@@ -6,7 +6,7 @@
   --secondary-bg-color : #191919;
   --third-color : #999999;
   --button-color: #0055FF;
-  --box-shadow: #e1e1e1 0px 1px 0px, #e1e1e1 0px 4px 16px, #e1e1e1 0px 8px 16px;
+  --box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   --font-title : 'Mukta', sans-serif;
   --font-text :'Josefin Sans', sans-serif;
 }
@@ -20,7 +20,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: var(--main-bg-color);
   font-family: var(--font-text);
   overflow-x: hidden;
 }
@@ -162,134 +161,12 @@ height: 2rem;
 
 .logo {
   height: 4rem;
-}
-
-/********************************************************************* HOME *********************************************************************/ 
-.main_container {
-  padding: 1rem 3rem;
-}
-
-/************* LANDING IMAGE *************/
-.landing_page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  margin: 1rem 0 2rem;
-}
-.landing_page h1 {
-  font-size: 2.5rem;
-  text-align: center;
-}
-.landing_page h1, .landing_page h2 {
+  width: 8rem;
+  object-fit: cover;
+  object-position: 50%;
+  margin-left: -1rem;
   background-color: transparent;
-  padding: 0.5rem 2rem;
-  z-index: 1;
-  margin: 0;
-  color: var(--main-bg-color);
 }
-
-  .background_img {
-    position: absolute;
-    background-position: 50%;
-    min-width: 100%;
-    height: 100%;
-  }
-  .veil {
-    position: absolute;
-    background-color: var(--secondary-bg-color);
-    width: 100%;
-    height: 100%;
-    opacity: 60%;
-  }
-
-
-/********************************************************************* Page 1 *********************************************************************/ 
-
-
-
-/********************************************************************* CONTACT *********************************************************************/ 
-
-
-label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 1rem 0
-}
-.contact_form input, .contact_form textarea{
-padding: 1rem 2rem;
-margin: 1rem 0;
-border-radius: 0.25rem;
-border: none;
-box-shadow: var(--box-shadow);
-width: 90%;
-}
-
-.contact_form textarea{
-  height: 10rem;
-}
-.contact_form button {
-  width: 10rem;
-  margin: 1rem auto;
-}
-
-/********************************************************************* FOOTER *********************************************************************/ 
-
-.footer {
-  padding: 1rem 2rem;
-  align-items: flex-start;
-  background-color: var(--secondary-bg-color);
-  color: var(--main-bg-color);
-}
-
-.footer * {
-  padding: 0.35rem 0;
-  background-color: inherit;
-  color: inherit;
-}
-
-.footer li, .footer a, .footer div {
-  padding: 0.15rem 0;
-}
-.footer-section {
-  width: 100%;
-}
-
-.footer img {
-  width: 3rem;
-  margin: 0 0.25rem;
-}
-
-.mentions {
-  text-align: center;
-  width: 100%;
-  margin: 2rem 1rem 0;
-}
-
-/********************************************************************* MENTIONS *********************************************************************/ 
-.mentions-container {
-  padding: 1rem 4rem;
-}
-
-.mentions-container > * {
-  padding: 1rem 0;
-}
-
-.mentions-container h2 {
-  margin-top: 2rem;
-}
-
-
-/******************************************************************************************************************************************/ 
-/********************************************************************* DESKTIOP *********************************************************************/ 
-/******************************************************************************************************************************************/ 
-
-
-@media screen and (min-width: 768px) {
 
   .mobile {
     display: none;
@@ -300,13 +177,109 @@ width: 90%;
   }
 
 /********************************************************************* NAVBAR *********************************************************************/ 
+header {
+  position: fixed;
+  width: 100%;
+}
+
 .navbar {
-  padding: 2rem 0;
+  padding: 1rem 0;
 
 }
-
 .navbar * {
-  padding: 0rem 2rem;
+  padding: 0rem 1.5rem;
+  color: var(--main-bg-color);
 }
-  
+
+.chosen {
+  text-decoration: underline;
+  font-weight: bold;
 }
+
+main {
+  background: linear-gradient(165deg, red, blue);
+}
+
+/********************************************************************* TRADUCTION *********************************************************************/ 
+.traduction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  margin: 4rem 0 0;
+ 
+}
+.traduction h1 {
+  margin: 0 0 4rem;
+  font-size: 1.5rem;
+  width: 60%;
+  text-align: center;
+}
+.traduction_top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 65vw;
+  border: #191919 solid 2px;
+  padding: 0.75rem 1rem;
+  background-color: var(--secondary-bg-color);
+  box-shadow: var(--box-shadow);
+}
+
+.traduction_top button {
+  border-radius: 50%;
+  padding: 0.25rem;
+  height: 2rem;
+  width: 2rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.traduction_top p {
+  width: calc(50% - 2rem);
+  font-size: 1.2rem;
+  font-weight: 600;
+  background-color: inherit;
+  color: var(--main-bg-color);
+}
+
+.traduction_top p:last-of-type {
+  text-align: right;
+}
+
+.traduction_top img {
+  height: 1.5rem;
+}
+
+.traduction_main {
+  width: 65vw;
+  height: 50vh;
+  border: #191919 solid 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.traduction_main > * {
+  height: 50vh;
+  width: 50%;
+  border: #191919 solid 1px;
+  resize: none;
+  padding: 1rem;
+  font-size: 1.1rem;
+  background-color: var(--main-bg-color);
+}
+
+.buttonSend {
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 2rem;
+  background-color:white;
+  font-weight: bold;
+  border: none;
+}
+

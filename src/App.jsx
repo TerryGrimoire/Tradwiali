@@ -11,8 +11,8 @@ import "./App.css";
 
 function App() {
   const helmet = {
-    title: "Change Title",
-    href: "https://changehref.com",
+    title: "Tradwiali",
+    href: "https://tradwiali.re",
     description: "Change description",
   };
   return (
@@ -20,8 +20,8 @@ function App() {
       <Header helmet={helmet} />
       <Routes>
         <Route path="/" element={<Home helmet={helmet} />} />
-        <Route path="/Services" element={<Services helmet={helmet} />} />
-        <Route path="/Tarifs" element={<Tarifs helmet={helmet} />} />
+        <Route path="/Contexte" element={<Services helmet={helmet} />} />
+        <Route path="/Conjugaison" element={<Tarifs helmet={helmet} />} />
         <Route path="/Contact" element={<Contact helmet={helmet} />} />
         <Route path="/Mentions" element={<Mentions />} />
       </Routes>

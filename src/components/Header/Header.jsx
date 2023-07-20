@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import Nav from "../Navigation/Nav";
 import Navbar from "../Navigation/Navbar";
 import burger from "../../assets/menu.png";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo2.png";
 
 function Burger({ helmet }) {
   const [openBurger, setOpenBurger] = useState(false);
-
   return (
     <header className="flex padding-header justify-between align-center">
       <button
