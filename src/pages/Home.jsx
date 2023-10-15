@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import papa from "papaparse";
 import change from "../assets/echanger.png";
 
 export default function Home({ helmet }) {
@@ -8,6 +9,44 @@ export default function Home({ helmet }) {
   }, []);
 
   const [promptText, setPromptText] = useState("");
+  const [trad, setTrad] = useState([]);
+
+  const prepareData = (data) => {
+    let obj = {};
+    const json = data.map((line, index) => {
+      if (index > 0) {
+        obj = { [line[0]]: line[1] };
+      }
+      return obj;
+    });
+
+    json.shift();
+    setTrad([...new Set(json)]);
+  };
+
+  useEffect(() => {
+    fetch(import.meta.env.VITE_TRAD)
+      .then((result) => result.text())
+      .then((text) => papa.parse(text))
+      .then((data) => prepareData(data.data));
+  }, []);
+
+  const transformedObject = {};
+
+  for (const obj of trad) {
+    // eslint-disable-next-line guard-for-in
+    for (const key in obj) {
+      transformedObject[key] = obj[key];
+    }
+  }
+
+  const translateSentence = (text) => {
+    const words = text.split(" ");
+    const translatedText = words
+      .map((word) => transformedObject[word] || word)
+      .join(" ");
+    return translatedText;
+  };
 
   return (
     <main className="flex-col">
@@ -34,56 +73,9 @@ export default function Home({ helmet }) {
               setPromptText(event.target.value);
             }}
           />
-          <p>
-            {promptText
-              .replaceAll("Je ", "mi ")
-              .replaceAll("Tu ", "ou ")
-              .replaceAll("Il ", "li ")
-              .replaceAll(" lui ", "li ")
-              .replaceAll("Elle ", "li ")
-              .replaceAll("Nous ", "nou ")
-              .replaceAll("Vous ", "zot ")
-              .replaceAll("Ils", "bana ")
-              .replaceAll("Elles", "bana ")
-              .replaceAll("t'aime", "aime aou")
-              .replaceAll("beaucoup", "bonpé")
-              .replaceAll("alcool", "larak")
-              .replaceAll(" suis ", " lé ")
-              .replaceAll("g", "j")
-              .replaceAll("ss", "s")
-              .replaceAll("mme", "m")
-              .replaceAll("un", "in")
-              .replaceAll("il", "y")
-              .replaceAll("c", "k")
-              .replaceAll(" est ", " lé ")
-              .replaceAll(" es ", " lé ")
-              .replaceAll(" suis ", " lé ")
-              .replaceAll(" sommes ", " lé ")
-              .replaceAll(" êtes ", " lé ")
-              .replaceAll(" etes ", " lé ")
-              .replaceAll(" sont ", " lé ")
-              .replaceAll(" pied ", " pié ")
-              .replaceAll(" pieds ", " pié ")
-              .replaceAll(" ses ", " son ")
-              .replaceAll(" bete", " kouyon ")
-              .replaceAll(" bête", " kouyon ")
-              .replaceAll(" alors que ", " tandi ")
-              .replaceAll("en", "an")
-              .replaceAll(" aime ", " i aim ")
-              .replaceAll("beaucoup", "bonpé")
-              .replaceAll(" le ", " ")
-              .replaceAll(" la ", " ")
-              .replaceAll("eau", "o")
-              .replaceAll("oo", "o")
-              .replaceAll("oup ", "ou ")
-              .replaceAll(" et ", " é ")
-              .replaceAll("oi", "wa")
-              .replaceAll("d'", "")}
-          </p>
+
+          <p>{translateSentence(promptText.toLowerCase())}</p>
         </div>
-        <button type="button" className="buttonSend">
-          TRADUIRE
-        </button>
       </section>
     </main>
   );

@@ -283,3 +283,22 @@ main {
   border: none;
 }
 
+
+@media screen and (max-width: 900px) {
+
+  .desktop {
+    display: none;
+  }
+
+  .traduction_top {
+    width: 90vw;
+  }
+  .traduction_main {
+    flex-direction: column;
+    width: 90vw;
+  }
+
+  .traduction_main > * {
+    width: 100%;
+  }
+}
